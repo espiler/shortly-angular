@@ -2,6 +2,43 @@ angular.module('shortly.services', [])
 
 .factory('Links', function ($http) {
   // Your code here
+  var data = {links: []};
+  var link = {};
+
+  var getLinks = function() {
+    $http({
+      method: 'GET',
+      url: '/api/links'
+    })
+    .then(function(res) {
+      data.links = res.data;
+    });
+  };
+
+  var addLink = function(link) {
+    return $http({
+      method: 'POST',
+      url: '/api/links',
+      data: {url: link},
+    })
+    .then(function(response) {
+        // invoke newLink -> pass result to next two definitions
+        var newLink;
+        data.links.push(newLink); // Adds new link to master links list
+        link = newLink; // assigns newly created link to link object
+      },
+      function(response) {}  // If Error
+    );
+  };
+
+
+  return {
+    getLinks: getLinks,
+    data: data,
+    link: link,
+    addLink: addLink
+  };
+
 })
 .factory('Auth', function ($http, $location, $window) {
   // Don't touch this Auth service!!!
