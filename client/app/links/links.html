@@ -1,4 +1,15 @@
 <div id='container' ng-controller="LinksController">
   <!-- Your html here -->
-  <li  ng-repeat-start="link in data"> {{ link }} </li>
+  <a href="#/shorten"> Check out our Shortener! </a>
+  <br/><br/>
+  <input type="text" ng-model="search"></input>
+  <br/><br/>
+  <table>
+    <tr ng-repeat="link in data.links | filter:search | orderBy:createdAt">
+      <td> {{link.url}} </td>
+      <td> <a href="{{link.code}}"> http://shortly.{{link.code}} </a> </td>
+      <td> {{link.visits}} </td>
+    </tr>
+  </table>
+  <p> {{search}}</p>
 </div>

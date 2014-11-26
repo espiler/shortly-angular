@@ -1,6 +1,23 @@
 <div id='container'>
 <!-- Your code here -->
+<a href="#/links"> See Available Links! </a>
+<br/><br/>
+<form ng-submit="submitLink()">
+  <input type="url" ng-model="link.url" placeholder="url to shorten"></input>
+  <input type="submit" value="submit"></input>
+  <p ng-show="link.url"> Is Valid! <p>
+  <p ng-show="!link.url"> NOT VALID! <p>
+</form>
+<br/><br/>
+
+<table>
+  <tr ng-if="data.links.length>0">
+    <td> {{data.links[data.links.length-1].url}} </td>
+    <td> <a href="{{link.code}}"> http://shortly.{{data.links[data.links.length-1].code}} </a> </td>
+  </tr>
+</table>
+
+<br/>
 
 </div>
-
 
